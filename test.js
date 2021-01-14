@@ -15,7 +15,14 @@ export const fetchWiegandFailure = response => ({
 
 export const getAllWiegand = (filter) => {
   return dispatch => {
-    return accessService.getAllWiegand(filter)
+    return accessService.getWiegandById(id)
+    .then(response => {
+      let result = response.data || {};
+      dispatch(fetchWiegandDetailSuccess(result));
+      return result;
+    },
+      
+    accessService.getAllWiegand(filter)
       .then(response => {
         let BadgeConfigs = (response.data && response.data.BadgeConfigs) || []
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
