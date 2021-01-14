@@ -20,7 +20,15 @@ export const getAllWiegand = (filter) => {
         let BadgeConfigs = (response.data && response.data.BadgeConfigs) || []
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
-
+ .then(response => {
+        let result = response.data || {};
+        dispatch(fetchWiegandDetailSuccess(result));
+        return result;
+      },
+        error => {
+          dispatch(fetchWiegandDetailFailure(error));
+          return error;
+        })
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
         dispatch(fetchWiegandSuccess(BadgeConfigs));
