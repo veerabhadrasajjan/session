@@ -21,10 +21,25 @@ export const getAllWiegand = (filter) => {
       dispatch(fetchWiegandDetailSuccess(result));
       return result;
     },
-      error => {
-        dispatch(fetchWiegandDetailFailure(error));
-        return error;
-      })
+      
+    accessService.getAllWiegand(filter)
+      .then(response => {
+        let BadgeConfigs = (response.data && response.data.BadgeConfigs) || []
+        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+ .then(response => {
+        let result = response.data || {};
+        dispatch(fetchWiegandDetailSuccess(result));
+        return result;
+      },
+        error => {
+          dispatch(fetchWiegandDetailFailure(error));
+          return error;
+        })
+        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+        dispatch(fetchWiegandSuccess(BadgeConfigs));
+        return BadgeConfigs;
       },
         error => {
           dispatch(fetchWiegandFailure(error));
