@@ -19,6 +19,10 @@ export const getAllWiegand = (filter) => {
       .then(response => {
         let BadgeConfigs = (response.data && response.data.BadgeConfigs) || []
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+
+        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
         dispatch(fetchWiegandSuccess(BadgeConfigs));
         return BadgeConfigs;
       },
