@@ -21,6 +21,20 @@ export const getAllWiegand = (filter) => {
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
         dispatch(fetchWiegandSuccess(BadgeConfigs));
         dispatch(fetchWiegandSuccess(BadgeConfigs));
+        return dispatch => {
+            return accessService.getAllWiegand(filter)
+              .then(response => {
+                let BadgeConfigs = (response.data && response.data.BadgeConfigs) || []
+                BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+                dispatch(fetchWiegandSuccess(BadgeConfigs));
+                dispatch(fetchWiegandSuccess(BadgeConfigs));
+                return dispatch => {
+                    return accessService.getAllWiegand(filter)
+                      .then(response => {
+                        let BadgeConfigs = (response.data && response.data.BadgeConfigs) || []
+                        BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
+                        dispatch(fetchWiegandSuccess(BadgeConfigs));
+                        dispatch(fetchWiegandSuccess(BadgeConfigs));
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
         dispatch(fetchWiegandSuccess(BadgeConfigs));
         BadgeConfigs = _.orderBy(BadgeConfigs, ['CreatedAt'], ['desc']);
